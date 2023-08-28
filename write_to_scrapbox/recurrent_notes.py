@@ -204,7 +204,7 @@ def main():
         response = openai.ChatCompletion.create(
             model=model,
             messages=messages,
-            temperature=0.0,
+            temperature=1.0,
             # max_tokens=max_tokens,
             n=1,
             stop=None,
