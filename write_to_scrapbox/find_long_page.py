@@ -139,8 +139,8 @@ def main():
     print("# Message")
     print("\n".join(message))
 
-    title, lines = read_note_from_scrapbox("https://scrapbox.io/unnamed-project/%E9%9B%91%E8%AB%87%E3%83%9A%E3%83%BC%E3%82%B89")
-    return [{"title": title, "lines": lines + message}]
+    # title, lines = read_note_from_scrapbox("https://scrapbox.io/unnamed-project/%E9%9B%91%E8%AB%87%E3%83%9A%E3%83%BC%E3%82%B89")
+    return [{"title": "🤖", "lines": message}]
 
 
 
