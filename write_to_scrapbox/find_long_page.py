@@ -30,7 +30,7 @@ You will be shown Conversation among people. Please read, memorize, and understa
 1 - Conclude all possible topics in the conversation with concise spans.
 2 - Determine the chat range of each topic. These ranges should be a set of non-intersecting, sequentially connected end-to-end intervals.
 3 - Conclude a summary of each chat with brief sentences in Japanese.
-4 - Report topic in Japanese, summary and range resutls in JSON format only with the assigned keys: 'topic', 'summary', 'startline', 'index'. Startline is the content of the beginning line. Index is integer line number.
+4 - Report topic in Japanese, summary and range resutls in JSON format only with the assigned keys: 'topic', 'summary', 'startline', 'index'. Startline is the content of the beginning line. Index is integer line number. Output shuold be a list of JSON objects `[...]`.
 """
 
 LESS_INTERSTING = "___BELOW_IS_LESS_INTERESTING___"
