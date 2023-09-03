@@ -28,9 +28,9 @@ You will be shown Conversation among people. Please read, memorize, and understa
 {conversation}
 ### Task
 1 - Conclude all possible topics in the conversation with concise spans.
-2 - Determine the chat range of each topic. These ranges should be a set of non-intersecting, sequentially connected end-to-end intervals.
+2 - Determine the chat range of each topic. These ranges should be a set of non-intersecting. Ignore small range less than 3 lines.
 3 - Conclude a summary of each chat with brief sentences in Japanese.
-4 - Report topic in Japanese, summary and range resutls in JSON format only with the assigned keys: 'topic', 'summary', 'startline', 'index'. Startline is the content of the beginning line. Index is integer line number. Output shuold be a list of JSON objects `[...]`.
+4 - Report topic in Japanese, summary and range resutls in JSON format only with the assigned keys: 'topic', 'summary', 'startline', 'endline', 'index'. Startline is the content of the beginning line. Index is integer line number. Output shuold be a list of JSON objects `[...]`.
 """
 
 LESS_INTERSTING = "___BELOW_IS_LESS_INTERESTING___"
@@ -123,7 +123,10 @@ def main():
     bottom = take_bottom(body, 4000)
     p = PROMPT.format(conversation=bottom)
 
-    message = [f"最も長いページ: {longest_page_title} ({longest_page_size} tokens)", ""]
+    message = [
+        "🤖",
+        "このページは毎日自動生成されて上書きされます。",
+        f"最も長いページ: {longest_page_title} ({longest_page_size} tokens)", ""]
     ret = call_gpt(p)
     print("\n".join(ret))
     try:
@@ -132,6 +135,8 @@ def main():
             message.append(item["topic"])
             message.append(item["summary"] + "[neko.icon]")
             message.append("> " + item["startline"])
+            message.append("> ...")
+            message.append("> " + item["endline"])
             message.append("")
     except Exception as e:
         print(e)
